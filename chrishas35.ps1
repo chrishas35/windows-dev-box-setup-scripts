@@ -30,6 +30,13 @@ Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\
 Set-ItemProperty -Path HKLM:\Software\Microsoft\Windows\CurrentVersion\AppModelUnlock -Name AllowDevelopmentWithoutDevLicense -Value 1
 
 # executeScript "CommonDevTools.ps1";
+# tools we expect devs across many scenarios will want
+choco install -y vscode
+choco install -y git --package-parameters="'/GitAndUnixToolsOnPath /WindowsTerminal'"
+choco install -y python
+choco install -y 7zip.install
+# choco install -y sysinternals
+
 executeScript "RemoveDefaultApps.ps1";
 # executeScript "HyperV.ps1";
 # executeScript "Docker.ps1";
