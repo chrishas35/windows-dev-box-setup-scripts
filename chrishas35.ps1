@@ -19,9 +19,18 @@ function executeScript {
 
 #--- Setting up Windows ---
 # executeScript "FileExplorerSettings.ps1";
+# Show hidden files, Show protected OS files, Show file extensions
+# Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions
+Set-WindowsExplorerOptions -EnableShowFileExtensions
+# will expand explorer to the actual folder you're in
+Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name NavPaneExpandToCurrentFolder -Value 1
+
 # executeScript "SystemConfiguration.ps1";
+#--- Enable developer mode on the system ---
+Set-ItemProperty -Path HKLM:\Software\Microsoft\Windows\CurrentVersion\AppModelUnlock -Name AllowDevelopmentWithoutDevLicense -Value 1
+
 # executeScript "CommonDevTools.ps1";
-# executeScript "RemoveDefaultApps.ps1";
+executeScript "RemoveDefaultApps.ps1";
 # executeScript "HyperV.ps1";
 # executeScript "Docker.ps1";
 # executeScript "WSL.ps1";
